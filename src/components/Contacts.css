@@ -1,0 +1,173 @@
+/* ULTRA MODERN CONTACTS UI */
+
+.contacts-container {
+  min-height: 100vh;
+  padding: 50px 24px;
+  background:
+    radial-gradient(circle at top left, rgba(14,165,233,0.15), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(168,85,247,0.18), transparent 25%),
+    linear-gradient(135deg, #020617, #0f172a, #111827);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contacts-title {
+  text-align: center;
+  font-size: 58px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.contacts-form {
+  width: 100%;
+  max-width: 760px;
+  margin: auto;
+  padding: 35px;
+  border-radius: 32px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 1px 1px rgba(255,255,255,0.04);
+  display: grid;
+  gap: 18px;
+}
+
+.contacts-form input,
+.contacts-search {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: white;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.contacts-form input:focus,
+.contacts-search:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56,189,248,0.12);
+  background: rgba(255,255,255,0.06);
+}
+
+.contacts-form button {
+  border: none;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contacts-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(14,165,233,0.35);
+}
+
+.contacts-search {
+  max-width: 760px;
+  display: block;
+  margin: 28px auto 8px;
+}
+
+.contacts-list {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  transition: all 0.35s ease;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+}
+.contact-card::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(56,189,248,0.08);
+  top: -100px;
+  right: -90px;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(56,189,248,0.3);
+}
+
+.contact-card h3 {
+  font-size: 28px;
+  margin-bottom: 14px;
+  color: #7dd3fc;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card p {
+  margin-bottom: 8px;
+  color: rgba(255,255,255,0.75);
+  position: relative;
+  z-index: 1;
+}
+
+.edit-btn,
+.delete-btn {
+  margin-top: 18px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  margin-right: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.06);
+}
+
+@media (max-width: 768px) {
+
+  .contacts-title {
+    font-size: 40px;
+  }
+
+  .contacts-form {
+    padding: 24px;
+  }
+
+  .contacts-list {
+    grid-template-columns: 1fr;
+  }
+
+}
