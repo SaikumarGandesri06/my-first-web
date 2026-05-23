@@ -23,7 +23,7 @@ const editContact = (contact) => {
   // GET CONTACTS
   const fetchContacts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/contacts");
+      const response = await fetch("https://my-first-web-backend.onrender.com");
 
       const data = await response.json();
 
