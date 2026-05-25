@@ -54,7 +54,7 @@ const editContact = (contact) => {
 
     if(editingId) {
 
-      await fetch(`http://localhost:5000/contacts/${editingId}`, {
+      await fetch(`https://my-first-web-backend.onrender.com/${editingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -66,7 +66,7 @@ const editContact = (contact) => {
 
     } else {
 
-      await fetch("http://localhost:5000/contacts", {
+      await fetch("https://my-first-web-backend.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -96,7 +96,7 @@ const editContact = (contact) => {
 
   try {
 
-    await fetch(`http://localhost:5000/contacts/${id}`, {
+    await fetch(`https://my-first-web-backend.onrender.com/${id}`, {
       method: "DELETE"
     });
 
