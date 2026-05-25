@@ -23,7 +23,7 @@ const editContact = (contact) => {
   // GET CONTACTS
   const fetchContacts = async () => {
     try {
-      const response = await fetch("https://my-first-web-backend.onrender.com");
+      const response = await fetch("https://my-first-web-backend.onrender.com/contacts/${id}");
 
       const data = await response.json();
 
@@ -54,7 +54,7 @@ const editContact = (contact) => {
 
     if(editingId) {
 
-      await fetch(`https://my-first-web-backend.onrender.com/${editingId}`, {
+      await fetch(`https://my-first-web-backend.onrender.com/contacts/${editingId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -66,7 +66,7 @@ const editContact = (contact) => {
 
     } else {
 
-      await fetch("https://my-first-web-backend.onrender.com", {
+      await fetch("https://my-first-web-backend.onrender.com/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
