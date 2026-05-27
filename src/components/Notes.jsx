@@ -8,7 +8,7 @@ function Notes() {
   const [value, setValue] = useState("");
   const saveNote = async () => {
 
-  await fetch("http://localhost:5000/notes", {
+  await fetch("https://my-first-web-backend.onrender.com", {
 
     method: "POST",
 
