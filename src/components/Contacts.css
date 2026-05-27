@@ -20,6 +20,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
+   line-height: 1.2;          /* Add breathing space */
+  display: inline-block;     /* Prevent clipping in block context */
+  overflow: visible;         /* Ensure gradient doesn’t cut letters */
 }
 
 .contacts-form {

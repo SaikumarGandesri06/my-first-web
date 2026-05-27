@@ -12,7 +12,14 @@ body{
   overflow-x:hidden;
   color:white;
 }
-
+.content {
+  font-size: 2rem;        /* Make it large and readable */
+  font-weight: bold;      /* Emphasize the title */
+  text-align: center;     /* Center the text */
+  line-height: 1.4;       /* Add breathing space between lines */
+  word-break: break-word; /* Prevent words from being cut off */
+  white-space: pre-line;  /* Respect line breaks like <br /> */
+}
 /* ================= MAIN CONTAINER ================= */
 
 .container{
@@ -76,11 +83,21 @@ body{
 
 /* ================= MENU ================= */
 
-.menu-img{
+/*.menu-img{
   width:100%;
   display:flex;
   justify-content:flex-end;
   z-index:10;
+}*/
+.menu-img {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Push to the right */
+  align-items: flex-start;   /* Anchor to the top */
+  position: absolute;        /* Pin it to the viewport */
+  top: 20px;                 /* Adjust spacing from top */
+  right: 20px;               /* Adjust spacing from right */
+  z-index: 10;
 }
 
 .menu-container{
@@ -138,7 +155,7 @@ body{
 /* ================= ROBOT IMAGE ================= */
 
 .robot-section{
-  margin-top:20px;
+  margin-top:10px;
   display:flex;
   justify-content:center;
   align-items:center;

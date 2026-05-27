@@ -78,6 +78,9 @@ export default function Jarvis() {
     } else if (transcript.includes("open vignesh")) {
         respond("Opening  vignesh album");
         navigate("/FamilyPage");
+     } else if (transcript.includes("open commands")) {
+          respond("Opening  Commands");
+          navigate("/Commands");  
       } else if (transcript.includes("who is your boss")) {
         respond("Sai Kumar");
       } else {
