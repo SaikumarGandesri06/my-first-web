@@ -66,10 +66,17 @@ export default function Jarvis() {
       } else if (transcript.includes("open facebook")) {
         respond("Opening Facebook");
         window.open("https://www.facebook.com", "_blank");
-      }else if (transcript.includes("open dashboard")) {
+      }/*else if (transcript.includes("open dashboard")) {
         respond("Opening  Component");
         navigate("/Family");
-      }else if (transcript.includes("open contacts")) {
+      } */
+      
+      else if (transcript.includes("open family")) {  // ← ADD THIS
+    respond("Opening family page");
+    navigate("/family");
+       }
+      
+    else if (transcript.includes("open contacts")) {
         respond("Opening  Contacts");
         navigate("/Contacts");
     }else if (transcript.includes("open notes")) {
@@ -77,7 +84,7 @@ export default function Jarvis() {
         navigate("/Notes");
     } else if (transcript.includes("open vignesh")) {
         respond("Opening  vignesh album");
-        navigate("/FamilyPage");
+        navigate("/vigneshAlbum");
      } else if (transcript.includes("open commands")) {
           respond("Opening  Commands");
           navigate("/Commands");  
