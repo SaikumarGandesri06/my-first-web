@@ -253,7 +253,7 @@
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .hero-section h1 {
@@ -262,8 +262,7 @@
   background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 15px;
-       /* Add breathing space */
+   line-height: 1.2;     /* Add breathing space */
   display: inline-block;     /* Prevent clipping in block context */
   overflow: visible; 
 }
