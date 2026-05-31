@@ -1,16 +1,12 @@
-// Contacts.jsx
-
 import React, { useEffect, useState } from "react";
 import "./Contacts.css";
 
+const API = "https://my-first-web-backend.onrender.com";
+
 function Contacts() {
-
   const [contacts, setContacts] = useState([]);
-
   const [searchTerm, setSearchTerm] = useState("");
-
   const [editingId, setEditingId] = useState(null);
-
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -19,143 +15,80 @@ function Contacts() {
 
   // FETCH CONTACTS
   const fetchContacts = async () => {
-
     try {
-
-      const response = await fetch(
-        "http://localhost:5000/contacts"
-      );
-
+      const response = await fetch(`${API}/contacts`);
       const data = await response.json();
-
       setContacts(data);
-
     } catch(error) {
-
       console.log(error);
-
     }
-
   };
 
   // LOAD CONTACTS
   useEffect(() => {
-
     fetchContacts();
-
   }, []);
 
   // INPUT CHANGE
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-
   };
 
   // SAVE OR UPDATE
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-
     try {
-
       if(editingId) {
-
-        await fetch(
-          `http://localhost:5000/contacts/${editingId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-          }
-        );
-
+        await fetch(`${API}/contacts/${editingId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
         setEditingId(null);
-
       } else {
-
-        await fetch(
-          "http://localhost:5000/contacts",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-          }
-        );
-
+        await fetch(`${API}/contacts`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
       }
-
-      setFormData({
-        name: "",
-        phone: "",
-        email: ""
-      });
-
+      setFormData({ name: "", phone: "", email: "" });
       fetchContacts();
-
     } catch(error) {
-
       console.log(error);
-
     }
-
   };
 
   // DELETE CONTACT
   const deleteContact = async (id) => {
-
     try {
-
-      await fetch(
-        `http://localhost:5000/contacts/${id}`,
-        {
-          method: "DELETE"
-        }
-      );
-
+      await fetch(`${API}/contacts/${id}`, {
+        method: "DELETE"
+      });
       fetchContacts();
-
     } catch(error) {
-
       console.log(error);
-
     }
-
   };
 
   // EDIT CONTACT
   const editContact = (contact) => {
-
     setFormData({
       name: contact.name,
       phone: contact.phone,
       email: contact.email
     });
-
     setEditingId(contact._id);
-
   };
 
   return (
-
     <div className="contacts-container">
+      <h1 className="contacts-title">Contacts Manager</h1>
 
-      <h1 className="contacts-title">
-        Contacts Manager
-      </h1>
-
-      <form
-        className="contacts-form"
-        onSubmit={handleSubmit}
-      >
-
+      <form className="contacts-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -164,7 +97,6 @@ function Contacts() {
           onChange={handleChange}
           required
         />
-
         <input
           type="text"
           name="phone"
@@ -173,7 +105,6 @@ function Contacts() {
           onChange={handleChange}
           required
         />
-
         <input
           type="email"
           name="email"
@@ -181,17 +112,9 @@ function Contacts() {
           value={formData.email}
           onChange={handleChange}
         />
-
         <button type="submit">
-
-          {
-            editingId
-            ? "Update Contact"
-            : "Save Contact"
-          }
-
+          {editingId ? "Update Contact" : "Save Contact"}
         </button>
-
       </form>
 
       <input
@@ -199,62 +122,30 @@ function Contacts() {
         className="contacts-search"
         placeholder="Search Contacts"
         value={searchTerm}
-        onChange={(e) =>
-          setSearchTerm(e.target.value)
-        }
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
 
       <div className="contacts-list">
-
-        {
-          contacts
+        {contacts
           .filter((contact) =>
-            contact.name
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())
+            contact.name.toLowerCase().includes(searchTerm.toLowerCase())
           )
           .map((contact) => (
-
-            <div
-              className="contact-card"
-              key={contact._id}
-            >
-
+            <div className="contact-card" key={contact._id}>
               <h3>{contact.name}</h3>
-
               <p>{contact.phone}</p>
-
               <p>{contact.email}</p>
-
-              <button
-                className="edit-btn"
-                onClick={() =>
-                  editContact(contact)
-                }
-              >
+              <button className="edit-btn" onClick={() => editContact(contact)}>
                 Edit
               </button>
-
-              <button
-                className="delete-btn"
-                onClick={() =>
-                  deleteContact(contact._id)
-                }
-              >
+              <button className="delete-btn" onClick={() => deleteContact(contact._id)}>
                 Delete
               </button>
-
             </div>
-
-          ))
-        }
-
+          ))}
       </div>
-
     </div>
-
   );
-
 }
 
 export default Contacts;
