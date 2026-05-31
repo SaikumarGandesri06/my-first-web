@@ -263,7 +263,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
-    line-height: 1.2;          /* Add breathing space */
+       /* Add breathing space */
   display: inline-block;     /* Prevent clipping in block context */
   overflow: visible; 
 }
