@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "./Notes.css";
 
 const API = "https://my-first-web-backend.onrender.com";
 

@@ -265,6 +265,10 @@
    line-height: 1.2;     /* Add breathing space */
   display: inline-block;     /* Prevent clipping in block context */
   overflow: visible; 
+  margin-bottom: 15px;
+    line-height: 1.2;          /* Add breathing space */
+  display: inline-block;     /* Prevent clipping in block context */
+  overflow: visible;  
 }
 
 .hero-section p {
@@ -507,4 +511,31 @@
     flex-wrap: wrap;
     border-radius: 16px;
   }
+}
+.dob-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dob-wrapper input {
+  flex: 1;
+}
+
+.age-badge {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }

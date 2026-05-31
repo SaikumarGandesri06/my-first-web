@@ -13,11 +13,13 @@ export default function FamilysPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    type: "brother",
-    description: "",
-    familyTree: ""
-  });
+  name: "",
+  type: "brother",
+  description: "",
+  familyTree: "",
+  dob: "",      // ← add this
+  age: ""       // ← add this
+});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -199,6 +201,31 @@ export default function FamilysPage() {
                 onChange={(e) => setImageFile(e.target.files[0])}
               />
             </div>
+            {/* DATE OF BIRTH + AUTO AGE CALCULATOR */}
+<div className="form-group">
+  <label>Date of Birth</label>
+  <div className="dob-wrapper">
+    <input
+      type="date"
+      value={formData.dob}
+      onChange={(e) => {
+        const dob = e.target.value;
+        const age = dob
+          ? Math.floor(
+              (new Date() - new Date(dob)) /
+              (365.25 * 24 * 60 * 60 * 1000)
+            )
+          : "";
+        setFormData({ ...formData, dob, age });
+      }}
+    />
+    {formData.age !== "" && (
+      <div className="age-badge">
+        🎂 {formData.age} years old
+      </div>
+    )}
+  </div>
+</div>
 
             <div className="form-buttons">
               <button className="save-btn" onClick={handleSave} disabled={saving}>

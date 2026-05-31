@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.notes-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px 60px;
+  color: white;
+}
+
+/* TITLE */
+.notes-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+  padding-top: 20px;
+}
+
+/* EDITOR SECTION */
+.notes-editor {
+  max-width: 780px;
+  margin: 0 auto 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* TITLE INPUT */
+.notes-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: white;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  margin-bottom: 16px;
+  transition: 0.3s ease;
+}
+
+.notes-input:focus {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.notes-input::placeholder {
+  color: #475569;
+}
+
+/* QUILL EDITOR */
+.quill-editor {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.quill-editor .ql-toolbar {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 14px 14px 0 0;
+  padding: 10px 14px;
+}
+
+.quill-editor .ql-toolbar .ql-stroke {
+  stroke: #94a3b8;
+}
+
+.quill-editor .ql-toolbar .ql-fill {
+  fill: #94a3b8;
+}
+
+.quill-editor .ql-toolbar .ql-picker {
+  color: #94a3b8;
+}
+
+.quill-editor .ql-toolbar button:hover .ql-stroke,
+.quill-editor .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #a5b4fc;
+}
+
+.quill-editor .ql-toolbar button:hover .ql-fill,
+.quill-editor .ql-toolbar button.ql-active .ql-fill {
+  fill: #a5b4fc;
+}
+
+.quill-editor .ql-container {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-top: none !important;
+  border-radius: 0 0 14px 14px;
+  min-height: 160px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.quill-editor .ql-editor {
+  color: #e2e8f0;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 160px;
+  padding: 16px 18px;
+}
+
+.quill-editor .ql-editor.ql-blank::before {
+  color: #475569;
+  font-style: normal;
+}
+
+.quill-editor .ql-editor p {
+  color: #e2e8f0;
+}
+
+/* SAVE BUTTON */
+.save-note-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+
+.save-note-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.5);
+}
+
+.save-note-btn:active {
+  transform: translateY(0);
+}
+
+/* NOTES LIST */
+.notes-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+/* NOTE CARD */
+.note-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  transition: 0.4s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.note-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+}
+
+.note-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 16px 35px rgba(99, 102, 241, 0.15);
+}
+
+/* NOTE TITLE */
+.note-card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+
+/* NOTE CONTENT */
+.note-card div[dangerouslySetInnerHTML],
+.note-card .note-content {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  padding-left: 8px;
+  max-height: 120px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.note-card p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.note-card ul,
+.note-card ol {
+  color: #94a3b8;
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+.note-card strong {
+  color: #e2e8f0;
+}
+
+/* NOTE BUTTONS */
+.note-buttons {
+  display: flex;
+  gap: 10px;
+  padding-left: 8px;
+}
+
+.edit-note-btn {
+  flex: 1;
+  padding: 9px 16px;
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.edit-note-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+  transform: translateY(-1px);
+}
+
+.delete-note-btn {
+  flex: 1;
+  padding: 9px 16px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.delete-note-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-1px);
+}
+
+/* EMPTY STATE */
+.notes-list:empty::after {
+  content: 'No notes yet. Create your first note!';
+  display: block;
+  text-align: center;
+  color: #475569;
+  font-size: 16px;
+  padding: 40px;
+  grid-column: 1 / -1;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .notes-title {
+    font-size: 36px;
+  }
+
+  .notes-editor {
+    padding: 20px;
+  }
+
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+
+  .note-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notes-title {
+    font-size: 28px;
+  }
+
+  .note-buttons {
+    flex-direction: column;
+  }
+}
