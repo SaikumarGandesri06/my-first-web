@@ -21,7 +21,7 @@ function App() {
      <Router>
   <Routes>
     <Route path="/" element={<Jarvis />} />
-    <Route path="/Family" element={<FamilyPage />} />
+    
     <Route path="/family" element={<FamilysPage />} />
     <Route path="/family/:id" element={<MemberDetailPage />} />  {/* ← must be here */}
     <Route path="/admin-login" element={<AdminLogin />} />
