@@ -18,19 +18,19 @@ function App() {
     <>
       
 
-     <Router> 
-      <Routes>
-         <Route path="/" element={<Jarvis />} />
-        <Route path="/member/:id" element={<MemberDetailPage />} />
-        <Route path="/vigneshAlbum" element={<VigneshAlbum />} />
-        <Route path="/Contacts" element={<Contacts />} />
-        <Route path="/Notes" element={<Notes />} />
-        <Route path="/Commands" element={<CommandsList />} />
-        <Route path="/family" element={<FamilysPage />} />
-        <Route path="/admin-login" element={<AdminLogin />} />
-      </Routes>
-    </Router>
-    
+     <Router>
+  <Routes>
+    <Route path="/" element={<Jarvis />} />
+    <Route path="/Family" element={<FamilyPage />} />
+    <Route path="/family" element={<FamilysPage />} />
+    <Route path="/family/:id" element={<MemberDetailPage />} />  {/* ← must be here */}
+    <Route path="/admin-login" element={<AdminLogin />} />
+    <Route path="/vigneshAlbum" element={<VigneshAlbum />} />
+    <Route path="/Contacts" element={<Contacts />} />
+    <Route path="/Notes" element={<Notes />} />
+    <Route path="/Commands" element={<CommandsList />} />
+  </Routes>
+</Router>
      </>
   )
 }
