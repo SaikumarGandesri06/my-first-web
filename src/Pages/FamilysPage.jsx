@@ -46,16 +46,16 @@ export default function FamilysPage() {
   };
 
   const handleEdit = (member) => {
-    setEditingMember(member);
-    setFormData({
-      name: member.name,
-      type: member.type,
-      description: member.description,
-      familyTree: member.familyTree
-    });
-    setShowForm(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  setFormData({
+    name: member.name,
+    type: member.type,
+    description: member.description,
+    familyTree: member.familyTree,
+    dob: member.dob || "",        // ← add this
+    age: member.age || ""         // ← add this
+  });
+  
+};
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this member?")) return;
@@ -80,10 +80,12 @@ export default function FamilysPage() {
     const token = localStorage.getItem("adminToken");
     const data = new FormData();
     data.append("name", formData.name);
-    data.append("type", formData.type);
-    data.append("description", formData.description);
-    data.append("familyTree", formData.familyTree);
-    if (imageFile) data.append("image", imageFile);
+data.append("type", formData.type);
+data.append("description", formData.description);
+data.append("familyTree", formData.familyTree);
+data.append("dob", formData.dob);       // ← add
+data.append("age", formData.age);       // ← add
+if (imageFile) data.append("image", imageFile);
 
     const url = editingMember
       ? `${API}/family/${editingMember._id}`
@@ -99,7 +101,14 @@ export default function FamilysPage() {
       setShowForm(false);
       setEditingMember(null);
       setImageFile(null);
-      setFormData({ name: "", type: "brother", description: "", familyTree: "" });
+      setFormData({ 
+  name: "", 
+  type: "brother", 
+  description: "", 
+  familyTree: "",
+  dob: "",     // ← add this
+  age: ""      // ← add this
+});
       fetchMembers();
     } catch (error) {
       console.log("Error saving member", error);
