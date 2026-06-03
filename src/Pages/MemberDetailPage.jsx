@@ -25,8 +25,10 @@ export default function MemberDetailPage() {
   const [showNodeForm, setShowNodeForm] = useState(false);
   const [treeSaving, setTreeSaving] = useState(false);
   const [nodeForm, setNodeForm] = useState({
-    name: "", age: "", dob: "", relationship: "", photo: ""
-  });
+  name: "", age: "", dob: "", relationship: "",
+  photo: "", photoMode: "upload", photoUploading: false  // ← add these
+});
+  
 
   const relationships = [
     "Father", "Mother", "Son", "Daughter",
@@ -109,7 +111,10 @@ export default function MemberDetailPage() {
   // ADD NODE
   const addNode = () => {
     setSelectedNode(null);
-    setNodeForm({ name: "", age: "", dob: "", relationship: "Son", photo: "" });
+   setNodeForm({
+  name: "", age: "", dob: "", relationship: "Son",
+  photo: "", photoMode: "upload", photoUploading: false  // ← add these
+});
     setShowNodeForm(true);
   };
 
@@ -117,12 +122,14 @@ export default function MemberDetailPage() {
   const editNode = (node) => {
     setSelectedNode(node.nodeId);
     setNodeForm({
-      name: node.name,
-      age: node.age,
-      dob: node.dob || "",
-      relationship: node.relationship,
-      photo: node.photo || ""
-    });
+  name: node.name,
+  age: node.age,
+  dob: node.dob || "",
+  relationship: node.relationship,
+  photo: node.photo || "",
+  photoMode: node.photo ? "url" : "upload",  // ← add
+  photoUploading: false                        // ← add
+});
     setShowNodeForm(true);
   };
 
@@ -406,14 +413,113 @@ export default function MemberDetailPage() {
                     )}
                   </div>
                 </div>
-                <div className="nf-group">
-                  <label>Photo URL (optional)</label>
-                  <input
-                    placeholder="https://..."
-                    value={nodeForm.photo}
-                    onChange={e => setNodeForm({ ...nodeForm, photo: e.target.value })}
-                  />
-                </div>
+               <div className="nf-group">
+  <label>Photo</label>
+  <div className="dp-photo-tabs">
+    <button
+      type="button"
+      className={`dp-photo-tab ${nodeForm.photoMode !== "url" ? "active" : ""}`}
+      onClick={() => setNodeForm({ ...nodeForm, photoMode: "upload" })}
+    >
+      📁 Upload
+    </button>
+    <button
+      type="button"
+      className={`dp-photo-tab ${nodeForm.photoMode === "url" ? "active" : ""}`}
+      onClick={() => setNodeForm({ ...nodeForm, photoMode: "url" })}
+    >
+      🔗 URL
+    </button>
+  </div>
+
+  {nodeForm.photoMode === "url" ? (
+    <>
+      <input
+        placeholder="https://..."
+        value={nodeForm.photo}
+        onChange={e => setNodeForm({ ...nodeForm, photo: e.target.value })}
+      />
+      {nodeForm.photo && (
+        <img
+          src={nodeForm.photo}
+          alt="preview"
+          className="dp-photo-preview"
+          onError={e => {
+            e.target.style.display = "none";
+            alert("⚠️ Image URL not valid. Please try another.");
+            setNodeForm({ ...nodeForm, photo: "" });
+          }}
+        />
+      )}
+    </>
+  ) : (
+    <>
+      <input
+        type="file"
+        accept="image/*"
+        id="node-img-upload"
+        style={{ display: "none" }}
+        onChange={async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          if (file.size > 5 * 1024 * 1024) {
+            alert("⚠️ Image too large! Please choose under 5MB.");
+            return;
+          }
+          const token = localStorage.getItem("adminToken");
+          const formData = new FormData();
+          formData.append("image", file);
+          try {
+            setNodeForm(prev => ({ ...prev, photoUploading: true }));
+            const res = await fetch(`${API}/upload`, {
+              method: "POST",
+              headers: { authorization: token },
+              body: formData
+            });
+            const data = await res.json();
+            if (data.url) {
+              setNodeForm(prev => ({ ...prev, photo: data.url, photoUploading: false }));
+            } else {
+              alert("❌ Upload failed. Try a different image.");
+              setNodeForm(prev => ({ ...prev, photoUploading: false }));
+            }
+          } catch (err) {
+            alert("❌ Upload failed. Check your connection.");
+            setNodeForm(prev => ({ ...prev, photoUploading: false }));
+          }
+        }}
+      />
+      <label htmlFor="node-img-upload" className="dp-upload-label">
+        {nodeForm.photoUploading ? (
+          <div className="dp-upload-placeholder">
+            <div className="spinner" style={{ width: 24, height: 24 }}></div>
+            <span>Uploading...</span>
+          </div>
+        ) : nodeForm.photo ? (
+          <div className="dp-upload-preview-wrapper">
+            <img
+              src={nodeForm.photo}
+              alt="preview"
+              className="dp-photo-preview"
+              onError={e => {
+                e.target.style.display = "none";
+                alert("⚠️ Could not display. Choose another image.");
+                setNodeForm(prev => ({ ...prev, photo: "" }));
+              }}
+            />
+            <span className="dp-upload-change">📷 Click to change</span>
+          </div>
+        ) : (
+          <div className="dp-upload-placeholder">
+            <span style={{ fontSize: "32px" }}>📷</span>
+            <span>Click to upload from device</span>
+            <span style={{ fontSize: "11px", color: "#64748b" }}>JPG, PNG, WEBP — max 5MB</span>
+          </div>
+        )}
+      </label>
+    </>
+  )}
+</div>
               </div>
               <div className="node-form-btns">
                 <button className="nf-save" onClick={saveNodeForm}>Save</button>

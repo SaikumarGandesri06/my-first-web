@@ -72,8 +72,8 @@ export default function Jarvis() {
       } */
       
       else if (transcript.includes("open family")) {  // ← ADD THIS
-    respond("Opening family page");
-    navigate("/family");
+    respond("Opening family album");
+    navigate("/welcome");  // <- goes to welcome page first
        }
       
     else if (transcript.includes("open contacts")) {
