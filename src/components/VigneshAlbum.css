@@ -177,6 +177,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fadeUp 0.8s ease 0.2s both;
+  line-height: 1.2;          /* Add breathing space */
+  display: inline-block;     /* Prevent clipping in block context */
+  overflow: visible;         
 }
 
 .va-hero-age {
