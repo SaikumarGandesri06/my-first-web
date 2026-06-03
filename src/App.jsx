@@ -11,6 +11,8 @@ import CommandsList from './components/CommandsList'
 import FamilysPage from './Pages/FamilysPage'
 import MemberDetailPage from './Pages/MemberDetailPage'
 import AdminLogin from './Pages/AdminLogin'
+import WelcomePage from './Pages/WelcomePage'
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -21,7 +23,8 @@ function App() {
      <Router>
   <Routes>
     <Route path="/" element={<Jarvis />} />
-    
+    <Route path="/welcome" element={<WelcomePage />} />
+
     <Route path="/family" element={<FamilysPage />} />
     <Route path="/family/:id" element={<MemberDetailPage />} />  {/* ← must be here */}
     <Route path="/admin-login" element={<AdminLogin />} />
