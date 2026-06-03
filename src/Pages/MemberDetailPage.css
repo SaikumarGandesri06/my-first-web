@@ -436,6 +436,100 @@
   border-radius: 0 0 10px 10px;
 }
 
+/* ── MOBILE PHOTO FIX ── */
+.detail-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 20px 30px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.detail-image-wrapper {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(99,102,241,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  background: #1e293b;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.detail-main-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block;
+  border-radius: 0 !important;
+}
+
+.detail-image-glow {
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 20px;
+  opacity: 0.2;
+  z-index: -1;
+  filter: blur(15px);
+}
+
+.detail-hero-info {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-hero-info h1 {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(to right, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.detail-badge {
+  display: inline-block;
+  background: rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.3);
+  color: #a5b4fc;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+}
+
+.detail-age-badge {
+  display: inline-block;
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: #6ee7b7;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+}
+
+.detail-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #94a3b8;
+  max-width: 500px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .detail-hero { padding: 50px 16px 24px; }
+  .detail-image-wrapper { max-width: 100%; }
+  .detail-hero-info h1 { font-size: 24px; }
+}
 /* MOBILE */
 @media (max-width: 768px) {
   .tree-canvas { height: 400px; }
