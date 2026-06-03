@@ -66,15 +66,23 @@ export default function Jarvis() {
       } else if (transcript.includes("open facebook")) {
         respond("Opening Facebook");
         window.open("https://www.facebook.com", "_blank");
-      }/*else if (transcript.includes("open dashboard")) {
+      } else if (transcript.includes("open portfolio")) {
+        respond("Opening portfolio");
+        window.open("https://v0-portfolio-creation-beta-five.vercel.app/", "_blank");
+      
+      /*else if (transcript.includes("open dashboard")) {
         respond("Opening  Component");
         navigate("/Family");
-      } */
+      } 
       
       else if (transcript.includes("open family")) {  // ← ADD THIS
     respond("Opening family album");
     navigate("/welcome");  // <- goes to welcome page first
-       }
+       }*/
+       else if (transcript.includes("open family")) {
+  respond("Opening family album");
+  navigate("/welcome");  // ← changed from /family to /welcome
+}
       
     else if (transcript.includes("open contacts")) {
         respond("Opening  Contacts");
