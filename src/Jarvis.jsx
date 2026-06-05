@@ -80,7 +80,7 @@ export default function Jarvis() {
     navigate("/welcome");  // <- goes to welcome page first
        }*/
       } else if (transcript.includes("open albums")) {
-  respond("Opening family albums");
+  respond("Opening  albums");
   navigate("/albums");
 
       } else if (transcript.includes("open family")) {
