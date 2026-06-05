@@ -79,6 +79,10 @@ export default function Jarvis() {
     respond("Opening family album");
     navigate("/welcome");  // <- goes to welcome page first
        }*/
+      } else if (transcript.includes("open albums")) {
+  respond("Opening family albums");
+  navigate("/albums");
+
       } else if (transcript.includes("open family")) {
   respond("Opening family album");
   navigate("/welcome");  // ← changed from /family to /welcome
